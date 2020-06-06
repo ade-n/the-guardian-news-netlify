@@ -23,22 +23,24 @@ class News extends React.Component {
     );
     const articleNews = arr.length ? (
       arr.slice(3, this.state.limit).map((article) => (
-        <div
-          background={"#fff"}
-          className="flex flex-col justify-between p-4 xl:w-64  sm:w-full bg-white xl:h-64 md:h-24 mb-2 "
-          key={article.id}
-        >
-          <div className="font-bold text-blue-900 text-lg">
-            <a
-              className="hover:text-red-600"
-              href={article.webUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {article.webTitle}
-            </a>
+        <div className="flex-auto text-gray-700 bg-white px-4 py-2 w-64  border border-gray-300">
+          <div
+            className="flex flex-col justify-between sm:h-64"
+            key={article.id}
+          >
+            <div>
+              <a
+                className="hover:text-red-600 font-bold text-blue-900 text-lg"
+                href={article.webUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {article.webTitle}
+              </a>
+            </div>
+
+            <div>{article.sectionName}</div>
           </div>
-          <div>{article.sectionName}</div>
         </div>
       ))
     ) : (
@@ -92,21 +94,8 @@ class News extends React.Component {
               ))}
             </div>
 
-            <div>
-              <div className="mb-4 ">{latestArticles}</div>
-              <div className="flex flex-col">
-                <div className="flex flex-wrap justify-between">
-                  {articleNews}
-                </div>
-                <div className="pt-2">
-                  {this.state.limit < arr.length && (
-                    <div onClick={this.onLoadMore} className=" cursor-pointer ">
-                      Load More...
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+            <div className="mb-4 ">{latestArticles}</div>
+            <div className="flex flex-wrap items-stretch">{articleNews}</div>
           </div>
         </div>
       </div>
